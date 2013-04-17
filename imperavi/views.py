@@ -20,7 +20,7 @@ UPLOAD_PATH = getattr(settings, 'IMPERAVI_UPLOAD_PATH', 'imperavi/')
 
 @require_POST
 @csrf_exempt
-@user_passes_test(lambda user: user.is_staff)
+@user_passes_test(lambda user: user.is_authenticated)
 def upload_image(request, upload_path=None):
     form = ImageForm(request.POST, request.FILES)
     if form.is_valid():
@@ -36,7 +36,7 @@ def upload_image(request, upload_path=None):
     return HttpResponseForbidden()
 
 
-@user_passes_test(lambda user: user.is_staff)
+@user_passes_test(lambda user: user.is_authenticated)
 def uploaded_images_json(request, upload_path=None):
     upload_path = upload_path or UPLOAD_PATH
     results = list()
@@ -54,7 +54,7 @@ def uploaded_images_json(request, upload_path=None):
 
 @require_POST
 @csrf_exempt
-@user_passes_test(lambda user: user.is_staff)
+@user_passes_test(lambda user: user.is_authenticated)
 def upload_file(request, upload_path=None, upload_link=None):
     form = FileForm(request.POST, request.FILES)
     if form.is_valid():
