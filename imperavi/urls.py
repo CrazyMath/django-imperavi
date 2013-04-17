@@ -1,4 +1,4 @@
-from django.conf.urls import patterns, url
+from django.conf.urls.defaults import patterns, url
 
 from views import upload_image, uploaded_images_json, upload_file
 

@@ -3,3 +3,4 @@
 local_settings.py
 dist/
 example/example/public/media/
+.idea/
